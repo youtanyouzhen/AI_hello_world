@@ -3,10 +3,16 @@ from keras import models
 from keras import layers
 from keras.utils import to_categorical
 import matplotlib.pyplot as plt
+from keras import optimizers
+import numpy as np
+from keras import regularizers
 
 
 # 拆分训练集和测试集
 (train_images, train_labels), (test_images, test_labels) = mnist.load_data()
+
+# plt.imshow(np.concatenate((train_images[0], train_images[1]), axis=1))
+# plt.show()
 
 # 从训练集中提取出验证集
 val_images, val_labels = train_images[:10000], train_labels[:10000]
@@ -31,7 +37,7 @@ network.add(layers.Dense(512, activation='sigmoid', input_shape=(28 * 28,))) # r
 network.add(layers.Dense(10, activation='softmax'))
 
 # 编译（主要用于配置训练算法/优化算法）
-network.compile(optimizer="rmsprop", loss='categorical_crossentropy', metrics=['accuracy'])
+network.compile(optimizer=optimizers.sgd(learning_rate=0.01), loss='categorical_crossentropy', metrics=['accuracy'])
 
 # 训练
 history = network.fit(train_images, train_labels, epochs=5, batch_size=128, validation_data=(val_images, val_labels))

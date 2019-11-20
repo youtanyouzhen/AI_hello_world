@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 from keras import optimizers
 import numpy as np
 from keras import regularizers
+from keras.losses import sparse_categorical_crossentropy
+import tensorflow as tf
+tf.keras.losses.sparse_categorical_crossentropy()
 
 
 # 拆分训练集和测试集

@@ -56,3 +56,6 @@ epochs = range(1, len(loss_values) + 1)
 fig, axes = plt.subplots(2,1)
 plt.plot(epochs, loss_values, 'bo', label='Training loss')
 plt.plot(epochs, val_loss_values, 'b', label='Validation loss')
+
+
+network.predict()
